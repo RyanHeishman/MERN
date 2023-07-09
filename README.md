@@ -1,2 +1,3 @@
 # MERN
-MERN practice
+MERN assignments/practice
+
