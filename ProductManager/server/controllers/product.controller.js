@@ -29,3 +29,15 @@ module.exports.singleProduct = (req, res) => {
     .catch(err => res.json(err));
 }
 
+module.exports.updateProduct = (req, res) => {
+    Product.findOneAndUpdate({_id: req.params.id}, req.body, {new:true})
+    .then(updatedProduct => res.json(updatedProduct))
+    .catch(err => res.json(err))
+}
+
+module.exports.deleteProduct = (req, res) => {
+    const id = req.params.id
+    Product.deleteOne({_id: id})
+    .then(product => res.json(product))
+    .catch(err => res.json(err))
+}
