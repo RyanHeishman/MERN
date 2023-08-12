@@ -17,7 +17,7 @@ function App() {
           <Route element={<DisplayAll/>} path='/' />
           <Route element={<ShowForm/>} path='/show'/>
           <Route element={<ShowOne/>} path='/show/:id'/>
-          <Route element={<Update/>} path='/show/updateShow/:id'/>
+          <Route element={<Update/>} path='/updateShow/:id'/>
         
         </Routes>
       </BrowserRouter>

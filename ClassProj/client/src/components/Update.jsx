@@ -4,9 +4,6 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const Update = (props) => {
 
-    const navigate = useNavigate()
-    const {id} = useParams()
-
     const [show, setShow] = useState({
         title: '',
         network: '',
@@ -14,14 +11,17 @@ const Update = (props) => {
         stillOn: false
     })
     const [errors, setErrors] = useState({});
+    const navigate = useNavigate()
+    const {id} = useParams()
+
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/show/${id}`)
+        axios.get(`http://localhost:8000/api/show/${id}`)
         .then((res) => {
             setShow(res.data)
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err);
         })
     }, [])
 
@@ -35,22 +35,17 @@ const Update = (props) => {
     }
 
     const submitHandler = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         axios.put(`http://localhost:8000/api/updateShow/${id}`, show)
-        .then((res) => {
+        .then(res => {
             navigate('/')
         })
-        .catch((err) => {
-            setErrors(err.response.data.errors)
-        })
+        .catch(err => console.log(err))
     }
-
-
-
-
+    
     return (
         <div>
-            <h3>Update</h3>
+            <h3>Update {show.title}</h3>
             <form onSubmit={submitHandler}>
                 <div>
                     <label htmlFor="title">Show Title: </label>
@@ -84,7 +79,7 @@ const Update = (props) => {
                     errors.stillOn ?
                     <p>{errors.stillOn.message}</p>: null
                 }
-                <button type="submit">Update Show</button>
+                <button type="submit">Add Show</button>
             </form>
         </div>
     )
