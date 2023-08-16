@@ -4,14 +4,15 @@ import DisplayAll from './components/DisplayAll'
 import ShowForm from './components/ShowForm'
 import ShowOne from './components/ShowOne'
 import Update from './components/Update'
+import Nav from './components/Nav'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <h1>TvDb</h1>
       <BrowserRouter>
+      <Nav/>
         <Routes>
 
           <Route element={<DisplayAll/>} path='/' />
@@ -25,4 +26,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

@@ -18,7 +18,6 @@ const DisplayAll = (props) => {
 
     return (
         <div>
-            <Link to='/show'>Add a Show</Link>
             <hr />
             {
                 shows.map((show)=>(
