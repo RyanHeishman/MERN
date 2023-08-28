@@ -33,7 +33,17 @@ io.on("connection", socket => {
     console.log(socket.id);
     socket.on('joined-server', data => {
         users.push({ name: data, id: socket.id });
-        io.emit('new-user', users);
+        io.emit('new-user', {users, messages});
     });
 
+    socket.on('send-message', data => {
+        messages.push(data);
+        io.emit('new-message', messages);
+    });
+
+
+    socket.on('disconnect', () => {
+        users = users.filter(user => user.id !== socket.id);
+        io.emit('user-disconnected', users);
+    });
 });
